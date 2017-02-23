@@ -48,6 +48,10 @@ void keyPressed() {
       if (key == 's' || keyCode ==  DOWN) {
         player1Controller.dir.y = 1;
       } 
+      
+      if (key == ' '){
+        player1Controller.setSTATE(1);
+      }
   }  
 }
 void keyReleased() {
@@ -63,6 +67,10 @@ void keyReleased() {
       } 
       if (key == 's' || keyCode == DOWN) {
         player1Controller.dir.y = 0;
-      } 
+      }
+      
+      if (key == ' '){
+        player1Controller.setSTATE(0);
+      }
   }  
 }
