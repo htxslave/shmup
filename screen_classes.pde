@@ -149,9 +149,10 @@ class GUI extends ScreenObject{
 
 class SplashScreen extends ScreenObject {
   float timer = 0;
-  PImage logo = loadImage("logo.png");
+  PImage logo = loadImage("coin.jpg");
   
   public void render(){
+    background(0);
     imageMode(CENTER);
     image(this.logo,width/2,height/2);
   }
