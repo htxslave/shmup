@@ -41,6 +41,8 @@ class Level extends ScreenObject {
   
   void render(){
    image(background, background.width/2, scroll);
+   image(background, background.width, scroll);
+   image(background, background.width*2, scroll);
   }
   
   Level nextLevel(Ship refPlayer1, ArrayList<GameObject> refShipObjects, ArrayList<GameObject> refGameObjects){
