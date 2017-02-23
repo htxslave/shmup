@@ -36,7 +36,6 @@ class Game extends ScreenObject{
       //placeholder code, register if ship is hit
       if (hit) {
         player1.shipColor = color(255, 0, 0);
-        player1.setHp(-1);
          if(player1.getHp() <=0){
            currentLevel.levelComplete = true;
            screenController = new StartButton(new QuitButton(new Menu(player1Controller), 100, 130), 100, 100);

@@ -38,7 +38,7 @@ class Bullet extends GameObject{
   }
   
   void effect(Ship target){
-    target.remove = true;
+    target.setHp(-1);
   }
 }
 
