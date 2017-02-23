@@ -1,6 +1,7 @@
 class Level extends ScreenObject {
   PImage background;
   float scroll;
+  PImage minion;
   
   Ship player1; 
   Ship finalBoss;
@@ -17,13 +18,14 @@ class Level extends ScreenObject {
     levelComplete = false;
     shipObjects = refShipObjects;
     gameObjects = refGameObjects;
+    minion = loadImage("Minion.png");
   }
   
   void update(float dt){
     scroll++;
     if (scroll == 600){
       Ship bar = new Ship(new BasicEnemyController(player1.getPos()), 0, 0);
-      Ship foo = new Ship(new BasicEnemyController(player1.getPos()), width, 0);
+      Ship foo = new BasicEnemy(new BasicEnemyController(player1.getPos()), new BasicPlayerWeapon(player1.pos, new PVector(0, 5)), width-101, 0, minion);
       shipObjects.add(bar);
       shipObjects.add(foo);
     }

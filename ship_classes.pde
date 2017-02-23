@@ -124,7 +124,7 @@ class Ship extends GameObject{
   }
   
   
-  
+
   Ship(Controller setController, Weapon setWeapon){
     controller = setController;
     sprite = new PImage(40,30);
@@ -176,4 +176,22 @@ class Ship extends GameObject{
   void setSprite(PImage set){
      sprite = set;
    }
+}
+
+//--------------------------------------------------
+class BasicEnemy extends Ship {
+ 
+  BasicEnemy(Controller setController, Weapon setWeapon, float setX, float setY, PImage setSprite) {
+    controller = setController;
+    weapon = setWeapon;
+    pos = new PVector(setX, setY);
+    sprite = setSprite;
+    size = new PVector(sprite.width, sprite.height);
+    
+    setSpeed(1);
+  }
+  
+  void render(){
+    image(sprite, getPos().x, getPos().y);
+  }
 }
