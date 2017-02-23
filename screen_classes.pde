@@ -160,7 +160,7 @@ class SplashScreen extends ScreenObject {
   void update(float dt){
     timer+= dt;
     
-    if (timer >= 3){
+    if (timer >= 5){
       screenController = new StartButton(new QuitButton(new Menu(player1Controller), 100, 130), 100, 100); 
     }
   }
