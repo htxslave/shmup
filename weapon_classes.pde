@@ -11,7 +11,6 @@ class Bullet extends GameObject {
     setSpeed(setSpeed);
   }
 
-
   // origin has to refenrence the ships pos!!!
   Bullet(PVector origin, float setSpeed, boolean isFriendly){
     size = new PVector(3,3);
@@ -39,8 +38,8 @@ class Bullet extends GameObject {
     fill(255, 0, 0);
     ellipse(getX(), getY(), getSize().x, getSize().y);
   }
-
-  void effect(Ship target) {
+  
+  void effect(Ship target){
     target.setHp(-1);
   }
 }
@@ -59,12 +58,18 @@ class Weapon extends ScreenObject {
     origin = setOrigin;
     dir = setDir;
   }
-
-
+  int b = 0;
   boolean fire() {
     isShooting = true;
+
+    if (isShooting == true) {
+      b++;
+    }
+
+    if (b == 10) {
       currentGame.gameObjects.add(new Bullet(origin, dir.y));
-    
+      b = 0;
+    }
     return isShooting;
   }
 
@@ -74,11 +79,10 @@ class Weapon extends ScreenObject {
   }
 
   void update(float dt) {
-
   }
   
   void setOrigin(PVector set){
-
+   origin = set; 
   }
 }
 
@@ -91,11 +95,17 @@ class BasicPlayerWeapon extends Weapon {
   BasicPlayerWeapon(PVector setOrigin, PVector setDir) {
     super(setOrigin, setDir);
   }
-
+  int bu = 0;
   boolean fire() {
     isShooting = true;
-    currentGame.gameObjects.add(new Bullet(origin, dir.y, true));
+    if (isShooting == true) {
+      bu++;
+    }
 
+    if (bu == 10) {
+      currentGame.gameObjects.add(new Bullet(origin, dir.y, true));
+      bu = 0;
+    }
     return isShooting;
   }
 }

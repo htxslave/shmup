@@ -9,7 +9,6 @@ class ScreenObject {
 
 class Menu extends ScreenObject{
   Controller controller;
-  float timer;
   
   Menu(){
   }
@@ -19,15 +18,11 @@ class Menu extends ScreenObject{
   }
   
   void render(){
-    //Skifter baggrundsfarve på menuen
-    timer += dt;
-    if(timer>0.017*15){
-    background(random(255),random(255),random(255));
-    timer=0;
-  }
+    background(0);
   }
   
   void update(float dt){
+    
   }
   
   Controller getController(){
@@ -63,7 +58,7 @@ class QuitButton extends MenuDecorator{
   QuitButton(Menu set, float setX, float setY){
     super(set);
     pos = new PVector(setX, setY);
-    size = new PVector(500,125);
+    size = new PVector(80,20);
   }
   
   boolean overButton(){
@@ -110,7 +105,7 @@ class StartButton extends MenuDecorator{
   StartButton(Menu set, float setX, float setY){
     super(set);
     pos = new PVector(setX, setY);
-    size = new PVector(500,125);
+    size = new PVector(80,20);
   }
   
   boolean overButton(){
@@ -167,11 +162,7 @@ class SplashScreen extends ScreenObject {
     timer+= dt;
     
     if (timer >= 5){
-      Menu newMenu = new Menu(player1Controller);
-      newMenu = new QuitButton(newMenu, 100, 350);
-      newMenu = new StartButton(newMenu, 100, 175);
-      
-      screenController = newMenu;
+      screenController = new StartButton(new QuitButton(new Menu(player1Controller), 100, 130), 100, 100); 
     }
   }
 }
