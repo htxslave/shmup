@@ -50,6 +50,7 @@ class MakeBig extends ShipDecorator{
   MakeBig(Ship set){
     super(set);
     setSize(new PVector(getSize().x*2,getSize().y*2));
-    setSprite(new PImage((int)getSize().x,(int)getSize().y));
+    setSprite(loadImage("Player.png"));
+    //setSprite(new PImage((int)getSize().x,(int)getSize().y));
   }
 }

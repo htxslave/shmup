@@ -5,12 +5,17 @@ class Game extends ScreenObject {
   Level currentLevel;
   Ship player1;
 
+  PImage playerSprite = loadImage("Player.png");
+  
+  
   ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
   ArrayList<GameObject> shipObjects = new ArrayList<GameObject>();
-
-  Game() {
-    player1 = new Ship(player1Controller, "player");
-    Ship bar = new Ship(new BasicEnemyController(player1.getPos()), width/2, 0);
+  
+  Game(){
+    
+    player1 = new Player(player1Controller, new BasicPlayerWeapon(new PVector(), new PVector(0, 5)), playerSprite);
+    playerSprite.resize(88,112);
+    Ship bar = new BasicEnemy(new BasicEnemyController(player1.getPos()), width-101, 0);
 
     //gameObjects.add(foo);
     shipObjects.add(bar);
@@ -35,11 +40,12 @@ class Game extends ScreenObject {
       //placeholder code, register if ship is hit
       if (hit) {
         player1.shipColor = color(255, 0, 0);
-        player1.setHp(-1);
-        if (player1.getHp() <=0) {
-          currentLevel.levelComplete = true;
-          screenController = new StartButton(new QuitButton(new Menu(player1Controller), 100, 130), 100, 100);
-        }
+
+         if(player1.getHp() <=0){
+           currentLevel.levelComplete = true;
+           screenController = new StartButton(new QuitButton(new Menu(player1Controller), 100, 130), 100, 100);
+         }
+
       } else {
         player1.shipColor = color(0, 0, 0);
       }
