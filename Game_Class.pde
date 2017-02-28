@@ -20,6 +20,7 @@ class Game extends ScreenObject{
   void update(float dt){
     boolean hit = false;
     player1.shipColor = color(0, 0, 0);
+    println(player1.HP);
     
     player1.update(dt);
     for (int i = gameObjects.size() - 1; i >= 0; i--) {
@@ -35,6 +36,10 @@ class Game extends ScreenObject{
       //placeholder code, register if ship is hit
       if (hit) {
         player1.shipColor = color(255, 0, 0);
+         if(player1.getHp() <=0){
+           currentLevel.levelComplete = true;
+           screenController = new StartButton(new QuitButton(new Menu(player1Controller), 100, 130), 100, 100);
+         }
       } else {
          player1.shipColor = color(0, 0, 0); 
       }

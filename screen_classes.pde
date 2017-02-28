@@ -131,6 +131,7 @@ class StartButton extends MenuDecorator{
       selected = true;
       if (getController() != null) {
         if (getController().getSTATE() == 1){
+          currentGame = new Game();
           screenController = currentGame;
         }
       }
@@ -149,9 +150,10 @@ class GUI extends ScreenObject{
 
 class SplashScreen extends ScreenObject {
   float timer = 0;
-  PImage logo = loadImage("logo.png");
+  PImage logo = loadImage("coin.jpg");
   
   public void render(){
+    background(0);
     imageMode(CENTER);
     image(this.logo,width/2,height/2);
   }
@@ -159,7 +161,7 @@ class SplashScreen extends ScreenObject {
   void update(float dt){
     timer+= dt;
     
-    if (timer >= 3){
+    if (timer >= 5){
       screenController = new StartButton(new QuitButton(new Menu(player1Controller), 100, 130), 100, 100); 
     }
   }
