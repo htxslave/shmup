@@ -142,6 +142,7 @@ class Ship extends GameObject{
   void update(float dt){
     setDir(controller.getDir());
     
+
     //fire
     if (controller.getSTATE() == 1){
       getWeapon().fire();
