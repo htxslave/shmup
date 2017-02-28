@@ -125,7 +125,7 @@ class Ship extends GameObject{
   }
   
   
-  
+
   Ship(Controller setController, Weapon setWeapon){
     controller = setController;
     sprite = new PImage(40,30);
@@ -142,6 +142,7 @@ class Ship extends GameObject{
   void update(float dt){
     setDir(controller.getDir());
     
+
     //fire
     if (controller.getSTATE() == 1){
       getWeapon().fire();
@@ -177,12 +178,71 @@ class Ship extends GameObject{
   void setSprite(PImage set){
      sprite = set;
    }
-  
-  void setHp(int hitpoints){
+   
+     void setHp(int hitpoints){
     HP += hitpoints;
   }
   
   int getHp(){
     return HP;
+   }
+}
+
+
+
+//--------------------------------------------------
+
+
+
+class BasicEnemy extends Ship {
+  
+   BasicEnemy(Controller setController, float setX, float setY){
+    controller = setController;
+    sprite = loadImage("Minion.png");
+    
+    pos = new PVector(setX, setY);
+    dir = new PVector(0, 0);
+    size = new PVector(sprite.width, sprite.height);
+    
+    weapon = new Weapon(pos);
+    
+    setSpeed(1);
+  }
+ 
+  BasicEnemy(Controller setController, Weapon setWeapon, float setX, float setY, PImage setSprite) {
+    controller = setController;
+    weapon = setWeapon;
+    pos = new PVector(setX, setY);
+    sprite = setSprite;
+    size = new PVector(sprite.width, sprite.height);
+    
+    setSpeed(1);
+  }
+  
+  void render(){
+    image(sprite, getPos().x, getPos().y);
+  }
+}
+
+class Player extends Ship {
+ PVector weaponOffset;
+  Player(Controller setController, Weapon setWeapon, PImage setSprite) {
+    controller = setController;
+    sprite = setSprite;
+    weapon = setWeapon;
+    setSpeed(10);
+    setHp(10);
+       
+    pos = new PVector(width/2, height-100);
+    //weapon = new BasicPlayerWeapon(pos, new PVector(0, 5));
+    size = new PVector(sprite.width*0.2, sprite.height*0.6);
+    weaponOffset = new PVector(0,50);
+    
+    weapon.setOrigin(pos);
+  }
+  
+  void render(){
+    image(sprite, getPos().x, getPos().y);
+
   }
 }
