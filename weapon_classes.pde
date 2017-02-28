@@ -11,8 +11,10 @@ class Bullet extends GameObject {
     setSpeed(setSpeed);
   }
 
-  Bullet(PVector origin, float setSpeed, boolean isFriendly) {
-    size = new PVector(3, 3);
+  // origin has to refenrence the ships pos!!!
+  Bullet(PVector origin, float setSpeed, boolean isFriendly){
+    size = new PVector(3,3);
+
     setDir(new PVector(0, -1));
     friendly = isFriendly;
 
@@ -77,6 +79,10 @@ class Weapon extends ScreenObject {
   }
 
   void update(float dt) {
+  }
+  
+  void setOrigin(PVector set){
+   origin = set; 
   }
 }
 
