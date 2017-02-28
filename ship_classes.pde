@@ -117,6 +117,7 @@ class Ship extends GameObject{
     
     if (type == "player"){
        setSpeed(10);
+       setHp(10);
        
        pos = new PVector(width/2, height-100);
        weapon = new BasicPlayerWeapon(pos, new PVector(0, 5));
@@ -141,6 +142,7 @@ class Ship extends GameObject{
   void update(float dt){
     setDir(controller.getDir());
     
+
     //fire
     if (controller.getSTATE() == 1){
       getWeapon().fire();
@@ -175,6 +177,14 @@ class Ship extends GameObject{
   
   void setSprite(PImage set){
      sprite = set;
+   }
+   
+     void setHp(int hitpoints){
+    HP += hitpoints;
+  }
+  
+  int getHp(){
+    return HP;
    }
 }
 
@@ -232,5 +242,6 @@ class Player extends Ship {
   
   void render(){
     image(sprite, getPos().x, getPos().y);
+
   }
 }
