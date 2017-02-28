@@ -2,6 +2,7 @@ class Level extends ScreenObject {
   PImage background;
   float scroll;
   PImage minion;
+  PImage boss;
   
   Ship player1; 
   Ship finalBoss;
@@ -19,19 +20,20 @@ class Level extends ScreenObject {
     shipObjects = refShipObjects;
     gameObjects = refGameObjects;
     minion = loadImage("Minion.png");
+    boss = loadImage("BossLv.png");
   }
   
   void update(float dt){
     scroll++;
     if (scroll == 600){
-      Ship bar = new Ship(new BasicEnemyController(player1.getPos()), 0, 0);
-      Ship foo = new BasicEnemy(new BasicEnemyController(player1.getPos()), new BasicPlayerWeapon(player1.pos, new PVector(0, 5)), width-101, 0, minion);
+      Ship bar = new BasicEnemy(new BasicEnemyController(player1.getPos()), width-101, 0); //new Ship(new BasicEnemyController(player1.getPos()), 0, 0);
+      Ship foo = new BasicEnemy(new BasicEnemyController(player1.getPos()), width-101, 0);
       shipObjects.add(bar);
       shipObjects.add(foo);
     }
     if (scroll == 1200){
-      finalBoss = new Ship(new BasicEnemyController(player1.getPos()), width/2, 0);
-      finalBoss = new MakeBig(finalBoss);
+      finalBoss = new BasicEnemy(new BasicEnemyController(player1.getPos()), new BasicPlayerWeapon(player1.pos, new PVector(0, 5)), width/2, 0, boss);
+      //finalBoss = new MakeBig(finalBoss);
       shipObjects.add(finalBoss);
     }
     
@@ -72,18 +74,18 @@ class Level2 extends Level{
       gameObjects.add(foo);
     }
     if (scroll == 600){
-      Ship bar = new Ship(new BasicEnemyController(player1.getPos()), 0, 0);
-      Ship foo = new Ship(new BasicEnemyController(player1.getPos()), width, 0);
+      Ship bar = new BasicEnemy(new BasicEnemyController(player1.getPos()), 0, 0);
+      Ship foo = new BasicEnemy(new BasicEnemyController(player1.getPos()), width, 0);
       shipObjects.add(bar);
       shipObjects.add(foo);
       
-      Ship baar = new Ship(new BasicEnemyController(player1.getPos()), width/2, 0);
-      Ship fooo = new Ship(new BasicEnemyController(player1.getPos()), width/2, -100);
+      Ship baar = new BasicEnemy(new BasicEnemyController(player1.getPos()), width/2, 0);
+      Ship fooo = new BasicEnemy(new BasicEnemyController(player1.getPos()), width/2, -100);
       shipObjects.add(baar);
       shipObjects.add(fooo);
     }
     if (scroll == 1200){
-      Ship bar = new Ship(new BasicEnemyController(player1.getPos()), width/2, 0);
+      Ship bar = new BasicEnemy(new BasicEnemyController(player1.getPos()), width/2, 0);
       bar = new MakeBig(bar);
       bar = new MakeBig(bar);
       shipObjects.add(bar);

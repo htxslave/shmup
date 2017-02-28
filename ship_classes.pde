@@ -178,8 +178,26 @@ class Ship extends GameObject{
    }
 }
 
+
+
 //--------------------------------------------------
+
+
+
 class BasicEnemy extends Ship {
+  
+   BasicEnemy(Controller setController, float setX, float setY){
+    controller = setController;
+    sprite = loadImage("Minion.png");
+    
+    pos = new PVector(setX, setY);
+    dir = new PVector(0, 0);
+    size = new PVector(sprite.width, sprite.height);
+    
+    weapon = new Weapon(pos);
+    
+    setSpeed(1);
+  }
  
   BasicEnemy(Controller setController, Weapon setWeapon, float setX, float setY, PImage setSprite) {
     controller = setController;
@@ -189,6 +207,27 @@ class BasicEnemy extends Ship {
     size = new PVector(sprite.width, sprite.height);
     
     setSpeed(1);
+  }
+  
+  void render(){
+    image(sprite, getPos().x, getPos().y);
+  }
+}
+
+class Player extends Ship {
+ PVector weaponOffset;
+  Player(Controller setController, Weapon setWeapon, PImage setSprite) {
+    controller = setController;
+    sprite = setSprite;
+    weapon = setWeapon;
+    setSpeed(10);
+       
+    pos = new PVector(width/2, height-100);
+    //weapon = new BasicPlayerWeapon(pos, new PVector(0, 5));
+    size = new PVector(sprite.width*0.2, sprite.height*0.6);
+    weaponOffset = new PVector(0,50);
+    
+    weapon.setOrigin(pos);
   }
   
   void render(){

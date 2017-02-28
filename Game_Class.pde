@@ -4,13 +4,17 @@ class Game extends ScreenObject{
   GUI gui;
   Level currentLevel;
   Ship player1;
+  PImage playerSprite = loadImage("Player.png");
+  
   
   ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
   ArrayList<GameObject> shipObjects = new ArrayList<GameObject>();
   
   Game(){
-    player1 = new Ship(player1Controller, "player");
-    Ship bar = new Ship(new BasicEnemyController(player1.getPos()), width/2, 0);
+    
+    player1 = new Player(player1Controller, new BasicPlayerWeapon(new PVector(), new PVector(0, 5)), playerSprite);
+    playerSprite.resize(88,112);
+    Ship bar = new BasicEnemy(new BasicEnemyController(player1.getPos()), width-101, 0);
     
     //gameObjects.add(foo);
     shipObjects.add(bar);
