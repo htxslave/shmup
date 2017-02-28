@@ -15,7 +15,7 @@ void setup(){
 
 void draw(){
   //Game loop
-  screenController.update(deltaTime());
+  screenController.update(deltaTime()*2);
   screenController.render();
 }
 
