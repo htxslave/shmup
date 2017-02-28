@@ -131,6 +131,7 @@ class StartButton extends MenuDecorator{
       selected = true;
       if (getController() != null) {
         if (getController().getSTATE() == 1){
+          currentGame = new Game();
           screenController = currentGame;
         }
       }

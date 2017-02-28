@@ -17,7 +17,6 @@ void draw(){
   //Game loop
   screenController.update(0.033);
   screenController.render();
-  
 }
 
 //-----------------------------------------------------------------------------
