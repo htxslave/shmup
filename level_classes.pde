@@ -49,8 +49,8 @@ class Level extends ScreenObject {
 
   void render() {
     image(background, background.width/2, scroll);
-    image(background, background.width, scroll);
-    image(background, background.width*2, scroll);
+    image(background, background.width*1.5, scroll);
+    image(background, background.width*2.5, scroll);
     pushMatrix();
     fill(0);
     font = createFont("LDFComicSansLight.ttf",50);
