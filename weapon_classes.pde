@@ -36,9 +36,9 @@ class Bullet extends GameObject {
     fill(255, 0, 0);
     ellipse(getX(), getY(), getSize().x, getSize().y);
   }
-
-  void effect(Ship target) {
-    target.remove = true;
+  
+  void effect(Ship target){
+    target.setHp(-1);
   }
 }
 
