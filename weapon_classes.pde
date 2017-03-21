@@ -23,6 +23,18 @@ class Bullet extends GameObject {
     setSpeed(setSpeed);
   }
 
+  Bullet(PVector origin, PVector dir, boolean isFriendly){
+    size = new PVector(3,3);
+
+    setDir(dir);
+    friendly = isFriendly;
+
+    setPos(new PVector(origin.x, origin.y));
+    
+    setSpeed(1);
+
+  }
+
   void update(float dt) {
 
     //move bullet
@@ -108,4 +120,38 @@ class BasicPlayerWeapon extends Weapon {
     }
     return isShooting;
   }
+}
+
+class PlusWeapon extends Weapon {
+  
+  boolean friendly = true;
+  
+  PlusWeapon(PVector setOrigin){
+    super(setOrigin);
+  }
+  PlusWeapon(PVector setOrigin, PVector setDir) {
+    super(setOrigin, setDir);
+    friendly = true;
+  }
+  
+  PlusWeapon(PVector setOrigin, boolean isFriendly) {
+    super(setOrigin);
+    friendly = isFriendly;
+  }
+  
+  int bu = 0;
+  boolean fire() {
+  isShooting = true;
+  if (isShooting == true) {
+  bu++;
+  }
+  if (bu == 10) {
+    currentGame.gameObjects.add(new Bullet(origin, new PVector(1, 0), friendly));
+    currentGame.gameObjects.add(new Bullet(origin, new PVector(0, 1), friendly));
+    currentGame.gameObjects.add(new Bullet(origin, new PVector(-1,0), friendly));
+    currentGame.gameObjects.add(new Bullet(origin, new PVector(0,-1), friendly));
+    bu = 0;
+   }
+   return isShooting;
+ }
 }
